@@ -1,0 +1,192 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+    <style>
+        body{
+            background-color: #E0E0E0;
+            padding: 0px;
+            margin: 0px;
+        }
+        .flex{
+            width: 100%;
+            position: fixed;
+            display: flex;
+            flex-direction: row-reverse;
+            background-image: linear-gradient(to right, #9E9E9E , #BDBDBD);
+            padding: 1%;
+        }
+        .flex > div{
+            width: 20%;
+            display: flex;
+            
+            
+        }
+        .flex > div div{
+            margin: 10px;
+        }
+        a{
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 900;
+            color: black;
+            
+            
+        }
+        #menudata{
+            position: absolute;
+            top: 100px;
+            border: 1px solid black;
+            display: flex;
+        }
+
+        .divsize{
+            width: 30%;
+            border: 1px solid black;
+            margin: 10px;
+        }
+        .divsize > img{
+            width: 80%;
+            height: 100px;
+        }
+        .got{
+            position: absolute;
+            top: 500px;
+        }
+    </style>
+<body>
+    <div class="flex">
+        <div>
+            
+                <div>
+                <a href="login.html">Login</a>
+            </div>
+            <div>
+                <a href="signup.html">Sign up</a>
+            </div>
+            <div>
+                <a href="menu.html">menu</a>
+            </div>
+         
+            
+        </div>
+    </div>
+  <div id="menudata">
+    
+   
+  </div>
+  <div class="got">
+      <button onclick="go()"> go to cart</button>
+  </div>
+
+    
+</body>
+</html>
+
+<script>
+
+    const arr=[
+        {
+            image:"https://i0.wp.com/images-prod.healthline.com/hlcmsresource/images/topic_centers/2020-2/fried-eggs-plate-breakfast-protein-1296x728-header.jpg?w=1155&h=1528",
+            name:"omlet",
+            price:30,
+            dis:"half bolied",
+            time:"10 minutes",
+         },
+         {
+            image:"https://images2.minutemediacdn.com/image/upload/c_crop,h_1126,w_2000,x_0,y_181/f_auto,q_auto,w_1100/v1554932288/shape/mentalfloss/12531-istock-637790866.jpg",
+            name:"Burger",
+            price:130,
+            dis:"burger with red sauce",
+            time:"5 minutes",
+         },
+         {
+            image:"https://image.shutterstock.com/image-photo/delicious-grilled-dorado-sea-bream-260nw-724276639.jpg",
+            name:"fish",
+            price:470,
+            dis:"rava fry",
+            time:"20 minutes",
+         },
+         {
+            image:"https://www.simplyrecipes.com/thmb/0ZD5yQqvIH4IrDruNNsWOdH_swU=/2000x1333/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__simply_recipes__uploads__2018__07__Add-ins-for-tuna-salad-2-bfbc6ae7ae864c40af3e6c9682b2e6a7.jpg",
+            name:"Sandwitch",
+            price:220,
+            dis:"with mayonese",
+            time:"5 minutes",
+         },
+         {
+            image:"https://food.fnr.sndimg.com/content/dam/images/food/fullset/2014/1/30/0/FNK_Tuna-Salad_s4x3.jpg.rend.hgtvcom.406.305.suffix/1391769187151.jpeg",
+            name:"salad",
+            price:430,
+            dis:"salad with vegetables",
+            time:"25 minutes",
+         }
+
+    ]
+
+
+    localStorage.setItem("foodlist",JSON.stringify(arr))
+
+  let foodlis=JSON.parse(localStorage.getItem("foodlist"))
+  let parent=document.getElementById("menudata")
+      parent.innerHTML=null;
+      
+
+  foodlis.forEach( function(el) {
+      let div=document.createElement('div');
+      div.setAttribute("class","divsize");
+      let img=document.createElement('img');
+      img.src=el.image;
+      let name=document.createElement('p')
+      name.innerHTML=`name: ${el.name}`
+      let price=document.createElement('p')
+      price.innerHTML=`price: ${el.price}`
+      let dis=document.createElement('p')
+      dis.innerHTML=`Discription: ${el.dis}`
+      let time=document.createElement('p')
+      time.innerHTML=`time: ${el.time}`
+      let btn=document.createElement('button')
+      btn.innerText="add to cart"
+      btn.style.display =function (){
+          addtcart(el)
+      }
+
+      div.append(img,name,price,dis,time,btn);
+      parent.append(div)
+  });
+
+
+let k=JSON.parse(localStorage.getItem(k))
+  function addtcart(el){
+ 
+   k.push(el) 
+    let arr=JSON.parse(localStorage.getItem('foodcart'));
+   let c=0;
+   for(let i=0;i<k.length;i++){
+       c++;
+       break;
+   }
+  if(c==0){
+      if(arr==null){
+          arr=[]
+      }
+     
+      arr.push(el)
+
+      localStorage.setItem("foodcart",JSON.stringify(arr));
+  }
+  else{
+      alert("Its already present in cart")
+  }
+
+
+
+  }
+
+  function go(){
+      window.location.href="cart.html"
+  }
+
+</script>

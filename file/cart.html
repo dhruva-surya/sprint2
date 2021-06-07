@@ -1,0 +1,129 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+    <style>
+        body{
+            background-color: #E0E0E0;
+            padding: 0px;
+            margin: 0px;
+        }
+        .flex{
+            width: 100%;
+            position: fixed;
+            display: flex;
+            flex-direction: row-reverse;
+            background-image: linear-gradient(to right, #9E9E9E , #BDBDBD);
+            padding: 1%;
+        }
+        .flex > div{
+            width: 20%;
+            display: flex;
+            
+            
+        }
+        .flex > div div{
+            margin: 10px;
+        }
+        a{
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 900;
+            color: black;
+            
+            
+        }
+        #cart{
+            position: absolute;
+            top: 200px;
+            display: flex;
+        }
+
+
+        .divsize{
+            width: 30%;
+            border: 1px solid black;
+            margin: 10px;
+        }
+        .divsize > img{
+            width: 80%;
+            height: 100px;
+        }
+        .sub{
+            position: absolute;
+            top: 600px;
+        }
+    </style>
+<body>
+    <div class="flex">
+        <div>
+            
+                <div>
+                <a href="login.html">Login</a>
+            </div>
+            <div>
+                <a href="signup.html">Sign up</a>
+            </div>
+            <div>
+                <a href="menu.html">menu</a>
+            </div>
+         
+            
+        </div>
+    </div>
+
+    <div id="cart">
+
+
+    </div>
+
+    <div class=sub>
+        <button onclick="submit()">Submit</button>
+    </div>
+    
+</body>
+</html>
+
+<script>
+ let foodli=JSON.parse(localStorage.getItem("foodlist"))
+    function show(){
+  
+  let parent=document.getElementById("cart")
+     
+      console.log(foodli)
+
+ foodli.forEach( function(el) {
+      let div=document.createElement('div');
+      div.setAttribute("class","divsize");
+      let img=document.createElement('img');
+      img.src=el.image;
+      let name=document.createElement('p')
+      name.innerHTML=`name: ${el.name}`
+      let price=document.createElement('p')
+      price.innerHTML=`price: ${el.price}`
+      let dis=document.createElement('p')
+      dis.innerHTML=`Discription: ${el.dis}`
+      let time=document.createElement('p')
+      time.innerHTML=`time: ${el.time}`
+   
+
+      div.append(img,name,price,dis,time);
+      parent.append(div)
+  });
+ 
+
+
+    }
+
+    show()
+
+
+    function submit(){
+       setInterval(alert('Your order is accepted'),0000)
+       setInterval(alert('Your order is being cooked'),3000)
+       setInterval(alert('Your order is ready'),4000)
+    }
+
+</script>

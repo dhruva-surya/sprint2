@@ -1,0 +1,131 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+    <style>
+        body{
+            background-color: #E0E0E0;
+            padding: 0px;
+            margin: 0px;
+        }
+        .flex{
+            width: 100%;
+            position: fixed;
+            display: flex;
+            flex-direction: row-reverse;
+            background-image: linear-gradient(to right, #9E9E9E , #BDBDBD);
+            padding: 1%;
+        }
+        .flex > div{
+            width: 20%;
+            display: flex;
+            
+            
+        }
+        .flex > div div{
+            margin: 10px;
+        }
+        a{
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 900;
+            color: black;
+            
+            
+        }
+
+        .signUpBox{
+            width: 20%;
+            height: 300px;
+            position: absolute;
+            top: 200px;
+            left: 600px;
+            border: 1px solid black;
+
+        }
+        #form{
+            width: 50%;
+            margin: auto;
+        }
+        button{
+            width: 20%;
+            position: relative;
+            left: 88px;
+            top: 10px;
+        }
+    </style>
+<body>
+    <div class="flex">
+        <div>
+            
+                <div>
+                <a href="login.html">Login</a>
+            </div>
+            <div>
+                <a href="signup.html">Sign up</a>
+            </div>
+            <div>
+                <a href="menu.html">menu</a>
+            </div>
+         
+            
+        </div>
+    </div>
+
+    <div class="signUpBox">
+        <form id="form"> 
+         <label for="name">Name</label>
+         <input type="text" id="name">
+         <label for="number">Contact no.</label>
+         <input type="number" id="number">
+         <label for="email">Email</label>
+         <input type="text" id="email">
+         <label for="password">Password</label>
+         <input type="password" id="password">
+
+        </form>
+        <button onclick="signup()">Sign up</button>
+    </div>
+    
+</body>
+</html>
+
+<script>
+    
+
+    function signup(){
+    let form=document.getElementById("form");
+    let name=form.name.value;
+    let number=form.number.value;
+    let email=form.email.value;
+    let password=form.password.value
+    if(name=="" || number=="" || email=="" || password=="" ){
+        alert("Enter full details")
+    }
+    else{
+    let user={
+        name,
+        number,
+        email,
+        password
+    }
+    let arr=localStorage.getItem('coninfo');
+     
+     if(arr==null){
+         arr=[]
+     }
+
+      else{
+          arr=JSON.parse(arr)
+      }
+     arr.push(user);
+     localStorage.setItem('coninfo',JSON.stringify(arr))
+     window.location.href="menu.html"
+    }
+
+    }
+
+
+</script>

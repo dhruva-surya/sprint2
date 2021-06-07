@@ -1,0 +1,109 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+    <style>
+        body{
+            background-color: #E0E0E0;
+            padding: 0px;
+            margin: 0px;
+        }
+        .flex{
+            width: 100%;
+            position: fixed;
+            display: flex;
+            flex-direction: row-reverse;
+            background-image: linear-gradient(to right, #9E9E9E , #BDBDBD);
+            padding: 1%;
+        }
+        .flex > div{
+            width: 20%;
+            display: flex;
+            
+            
+        }
+        .flex > div div{
+            margin: 10px;
+        }
+        a{
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 900;
+            color: black;
+            
+            
+        }
+
+        .login{
+            width: 20%;
+            position: absolute;
+            top: 300px;
+            border: 1px solid black;
+            left: 600px;
+
+        }
+        #form{
+            width: 50%;
+            margin: auto;
+        }
+        button{
+            margin-left: 90px;
+        }
+        
+    </style>
+<body>
+    <div class="flex">
+        <div>
+            
+                <div>
+                <a href="login.html">Login</a>
+            </div>
+            <div>
+                <a href="signup.html">Sign up</a>
+            </div>
+            <div>
+                <a href="menu.html">menu</a>
+            </div>
+         
+            
+        </div>
+    </div>
+  <div class="login">
+        <form id="form">
+            <label for="email">Email</label>
+            <input type="text" id="email">
+            <label for="password">Password</label>
+            <input type="password" id="password">
+        </form>
+        <button onclick="login()">login</button>
+  </div>
+    
+</body>
+</html>
+
+<script>
+
+    function login(){
+        let form=document.getElementById("form")
+        let ema=form.email.value;
+        let pas=form.password.value;
+
+        let use=JSON.parse(localStorage.getItem('coninfo'))
+        
+        let z=0;
+        for(let i=0;i<use.length;i++){
+            if(use[i].email===ema  && use[i].password===pas){
+                window.location.href="menu.html";
+                z++;
+                break;
+            }
+        }
+
+        if(z == 0){
+            alert("Wrong credentials")
+        }
+    }
+
+</script>
